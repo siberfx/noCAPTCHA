@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\NoCaptcha\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\NoCaptcha\Tests;
 
 use Arcanedev\NoCaptcha\NoCaptchaServiceProvider;
 
@@ -43,12 +47,13 @@ class NoCaptchaServiceProviderTest extends LaravelTestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expectations = [
             \Illuminate\Support\ServiceProvider::class,
-            \Arcanedev\Support\ServiceProvider::class,
-            \Arcanedev\Support\PackageServiceProvider::class,
+            \Illuminate\Contracts\Support\DeferrableProvider::class,
+            \Arcanedev\Support\Providers\ServiceProvider::class,
+            \Arcanedev\Support\Providers\PackageServiceProvider::class,
             \Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
         ];
 
@@ -58,10 +63,11 @@ class NoCaptchaServiceProviderTest extends LaravelTestCase
     }
 
     /** @test */
-    public function it_can_provides()
+    public function it_can_provides(): void
     {
         $expected = [
             \Arcanedev\NoCaptcha\Contracts\NoCaptcha::class,
+            \Arcanedev\NoCaptcha\Contracts\NoCaptchaManager::class,
         ];
 
         static::assertSame($expected, $this->provider->provides());
