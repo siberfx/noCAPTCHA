@@ -6,12 +6,10 @@ namespace Arcanedev\NoCaptcha;
 
 use Arcanedev\Html\Elements\Input;
 use Arcanedev\NoCaptcha\Utilities\ResponseV3;
-use Illuminate\Support\Arr;
 
 /**
  * Class     NoCaptchaV3
  *
- * @package  Arcanedev\NoCaptcha
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class NoCaptchaV3 extends AbstractNoCaptcha
@@ -129,12 +127,12 @@ class NoCaptchaV3 extends AbstractNoCaptcha
         $queries = [];
 
         if ($this->hasLang())
-            Arr::set($queries, 'hl', $this->lang);
+            $queries['hl'] = $this->getLang();
 
-        Arr::set($queries, 'render', $this->getSiteKey());
+        $queries['render'] = $this->getSiteKey();
 
         if ($this->hasCallbackName($callbackName))
-            Arr::set($queries, 'onload', $callbackName);
+            $queries['onload'] = $callbackName;
 
         return $this->getClientUrl() . (count($queries) ? '?' . http_build_query($queries) : '');
     }

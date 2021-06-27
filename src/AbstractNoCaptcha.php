@@ -11,7 +11,6 @@ use Psr\Http\Message\ServerRequestInterface;
 /**
  * Class     AbstractNoCaptcha
  *
- * @package  Arcanedev\NoCaptcha
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class AbstractNoCaptcha implements Contracts\NoCaptcha
@@ -154,6 +153,16 @@ abstract class AbstractNoCaptcha implements Contracts\NoCaptcha
     }
 
     /**
+     * Get language code.
+     *
+     * @return string|null
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
+
+    /**
      * Set HTTP Request Client.
      *
      * @param  \Arcanedev\NoCaptcha\Contracts\Utilities\Request  $request
@@ -280,7 +289,7 @@ abstract class AbstractNoCaptcha implements Contracts\NoCaptcha
      */
     protected function hasLang()
     {
-        return ! empty($this->lang);
+        return ! empty($this->getLang());
     }
 
     /**

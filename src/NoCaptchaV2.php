@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
 /**
  * Class     NoCaptchaV2
  *
- * @package  Arcanedev\NoCaptcha
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class NoCaptchaV2 extends AbstractNoCaptcha
@@ -46,7 +45,7 @@ class NoCaptchaV2 extends AbstractNoCaptcha
         $queries = [];
 
         if ($this->hasLang())
-            Arr::set($queries, 'hl', $this->lang);
+            Arr::set($queries, 'hl', $this->getLang());
 
         if ($this->hasCallbackName($callbackName)) {
             Arr::set($queries, 'onload', $callbackName);
